@@ -1,0 +1,278 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Store product catalog item with pricing and inventory stock",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Product title or name",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the product",
+          "maxLength": 3000
+        },
+        "category": {
+          "type": "string",
+          "description": "Product category",
+          "maxLength": 100
+        },
+        "price": {
+          "type": "number",
+          "description": "Current selling price in THB"
+        },
+        "originalPrice": {
+          "type": "number",
+          "description": "Original retail price before discount"
+        },
+        "stock": {
+          "type": "number",
+          "description": "Current stock quantity available for sale"
+        },
+        "sku": {
+          "type": "string",
+          "description": "Stock Keeping Unit code",
+          "maxLength": 50
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "Main product image URL",
+          "maxLength": 1000
+        },
+        "status": {
+          "type": "string",
+          "description": "Product status",
+          "enum": ["active", "draft", "out_of_stock"]
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp in ISO format"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last update timestamp in ISO format"
+        }
+      },
+      "required": ["name", "price", "stock", "category"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer purchase order including items, delivery details, and payment proof",
+      "type": "object",
+      "properties": {
+        "customerName": {
+          "type": "string",
+          "description": "Name of customer",
+          "minLength": 1,
+          "maxLength": 150
+        },
+        "customerPhone": {
+          "type": "string",
+          "description": "Contact telephone number",
+          "minLength": 9,
+          "maxLength": 20
+        },
+        "customerEmail": {
+          "type": "string",
+          "description": "Contact email address",
+          "maxLength": 150
+        },
+        "shippingAddress": {
+          "type": "string",
+          "description": "Complete shipping address and postal code",
+          "minLength": 5,
+          "maxLength": 500
+        },
+        "subtotal": {
+          "type": "number",
+          "description": "Sum of item prices"
+        },
+        "shippingFee": {
+          "type": "number",
+          "description": "Calculated delivery fee"
+        },
+        "totalAmount": {
+          "type": "number",
+          "description": "Grand total in THB"
+        },
+        "paymentMethod": {
+          "type": "string",
+          "description": "Chosen payment method",
+          "enum": ["promptpay", "truemoney", "bank_transfer"]
+        },
+        "paymentStatus": {
+          "type": "string",
+          "description": "Payment verification state",
+          "enum": ["pending", "slip_uploaded", "verified", "rejected"]
+        },
+        "orderStatus": {
+          "type": "string",
+          "description": "Order fulfillment lifecycle state",
+          "enum": ["pending", "confirmed", "processing", "shipped", "completed", "cancelled"]
+        },
+        "slipUrl": {
+          "type": "string",
+          "description": "Payment slip proof image data or URL",
+          "maxLength": 500000
+        },
+        "trackingNumber": {
+          "type": "string",
+          "description": "Courier shipping tracking code",
+          "maxLength": 100
+        },
+        "lineNotified": {
+          "type": "boolean",
+          "description": "Whether line notification was successfully sent"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Special instructions from customer",
+          "maxLength": 500
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Order creation date"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Order last modification date"
+        }
+      },
+      "required": ["customerName", "customerPhone", "shippingAddress", "totalAmount", "paymentMethod", "orderStatus"]
+    },
+    "StoreSettings": {
+      "title": "StoreSettings",
+      "description": "Store payment accounts, LINE notify configuration, and business profile",
+      "type": "object",
+      "properties": {
+        "storeName": {
+          "type": "string",
+          "description": "Display name of the store",
+          "maxLength": 100
+        },
+        "promptpayNumber": {
+          "type": "string",
+          "description": "PromptPay mobile number or Citizen ID / Tax ID",
+          "maxLength": 30
+        },
+        "promptpayName": {
+          "type": "string",
+          "description": "Registered PromptPay account holder name",
+          "maxLength": 100
+        },
+        "truemoneyNumber": {
+          "type": "string",
+          "description": "TrueMoney Wallet phone number",
+          "maxLength": 30
+        },
+        "truemoneyName": {
+          "type": "string",
+          "description": "TrueMoney Wallet holder name",
+          "maxLength": 100
+        },
+        "bankName": {
+          "type": "string",
+          "description": "Bank name (e.g. Kasikorn, SCB, Bangkok Bank)",
+          "maxLength": 100
+        },
+        "bankAccountNumber": {
+          "type": "string",
+          "description": "Bank account number",
+          "maxLength": 50
+        },
+        "bankAccountName": {
+          "type": "string",
+          "description": "Bank account holder name",
+          "maxLength": 100
+        },
+        "lineNotifyToken": {
+          "type": "string",
+          "description": "LINE Notify access token",
+          "maxLength": 200
+        },
+        "lineChannelSecret": {
+          "type": "string",
+          "description": "LINE Official Account or Webhook token",
+          "maxLength": 200
+        },
+        "autoDeductStock": {
+          "type": "boolean",
+          "description": "Enable automated inventory deduction upon ordering"
+        },
+        "lowStockThreshold": {
+          "type": "number",
+          "description": "Threshold quantity to alert when stock is running low"
+        }
+      },
+      "required": ["storeName", "promptpayNumber", "promptpayName"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Support chat message between customer and store owner",
+      "type": "object",
+      "properties": {
+        "senderRole": {
+          "type": "string",
+          "description": "Role of the sender",
+          "enum": ["customer", "admin"]
+        },
+        "senderName": {
+          "type": "string",
+          "description": "Display name of sender",
+          "maxLength": 100
+        },
+        "customerSessionId": {
+          "type": "string",
+          "description": "Customer visitor session ID",
+          "maxLength": 100
+        },
+        "text": {
+          "type": "string",
+          "description": "Message content",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "orderId": {
+          "type": "string",
+          "description": "Optional order reference number",
+          "maxLength": 100
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Message timestamp"
+        }
+      },
+      "required": ["senderRole", "senderName", "text", "customerSessionId"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": {
+        "$ref": "#/entities/Product"
+      },
+      "description": "Collection of merchandise products"
+    },
+    "/orders/{orderId}": {
+      "schema": {
+        "$ref": "#/entities/Order"
+      },
+      "description": "Collection of customer purchase orders"
+    },
+    "/settings/{settingId}": {
+      "schema": {
+        "$ref": "#/entities/StoreSettings"
+      },
+      "description": "Store configuration and payment receiver account details"
+    },
+    "/chats/{chatId}": {
+      "schema": {
+        "$ref": "#/entities/ChatMessage"
+      },
+      "description": "Customer support inquiry messages"
+    }
+  }
+}

@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Prompt', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #2D152B;
+    background-color: #FAF6F9;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+:root {
+  --pms-250: #ECC5DC;
+  --pms-251: #D693C0;
+  --pms-252: #BC5E9D;
+  --pms-purple: #96287F;
+  --pms-253: #740E60;
+  --dark-plum: #1E051C;
+  --wine-dark: #2C0729;
+}
+
+/* Custom luxury gradients matching the Pantone palette provided by the user */
+.bg-palette-gradient {
+  background: linear-gradient(135deg, #740E60 0%, #96287F 35%, #BC5E9D 70%, #D693C0 90%, #ECC5DC 100%);
+}
+
+.bg-palette-subtle {
+  background: linear-gradient(180deg, rgba(236, 197, 220, 0.25) 0%, rgba(250, 246, 249, 1) 100%);
+}
+
+.bg-palette-card {
+  background: linear-gradient(145deg, #ffffff 0%, #FDF9FB 100%);
+}
+
+.bg-luxury-hero {
+  background: radial-gradient(circle at 80% 20%, rgba(214, 147, 192, 0.25) 0%, transparent 50%),
+              radial-gradient(circle at 10% 80%, rgba(116, 14, 96, 0.15) 0%, transparent 45%),
+              linear-gradient(135deg, #2A0627 0%, #460E3F 50%, #681757 100%);
+}
+
+.text-gradient-luxury {
+  background: linear-gradient(135deg, #740E60 0%, #96287F 40%, #BC5E9D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #F3D299 0%, #E2B76D 50%, #C89945 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-luxury-glow {
+  border-color: rgba(188, 94, 157, 0.35);
+  box-shadow: 0 4px 20px -2px rgba(116, 14, 96, 0.08);
+}
+
+.border-luxury-active {
+  border-color: #96287F;
+  box-shadow: 0 0 0 3px rgba(150, 40, 127, 0.15);
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(236, 197, 220, 0.6);
+}
+
+.glass-panel-dark {
+  background: rgba(30, 5, 28, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(188, 94, 157, 0.25);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F5EBF2;
+}
+::-webkit-scrollbar-thumb {
+  background: #D693C0;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #96287F;
+}

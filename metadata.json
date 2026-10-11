@@ -1,0 +1,6 @@
+{
+  "name": "MANAW E-Commerce & Inventory",
+  "description": "ระบบร้านค้าออนไลน์ครบวงจร จัดการสต็อกสินค้าอัตโนมัติ รองรับชำระเงิน PromptPay QR, TrueMoney, โอนธนาคาร พร้อมระบบแชทและแจ้งเตือนผ่าน LINE",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
